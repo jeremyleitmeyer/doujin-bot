@@ -46,16 +46,16 @@ bot.on('ready', function (evt) {
 	logger.info(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
 		game: {
-			name: 'noodz'
+			name: 'Saucelord'
 		}
 	});
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
-	if(message === ""){
+	if (message === "") {
 		msg = evt.d.attachments[0].url
 		isURL(msg)
-	}else {
+	} else {
 		msg = message
 		isURL(msg)
 	}
@@ -86,41 +86,41 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							});
 						} else {
 
-						if (d[0].data.eng_name === undefined || d[0].data.eng_name === "") {
-							info = d[0].data.title
-						} else {
-							info = d[0].data.eng_name
-						}
-
-						if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === "") {
-							pic = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
-						} else {
-							pic = d[0].header.thumbnail
-						}
-
-						if (d[0].data.creator === undefined || d[0].data.creator === "") {
-							author = "Unknown"
-						} else {
-							author = d[0].data.creator[0]
-						}
-
-						bot.sendMessage({
-							to: channelID,
-							message: '-',
-							embed: {
-								color: 6826080,
-								thumbnail: {
-									url: pic,
-									width: 200
-								},
-								title: info,
-								description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMessage + ')'
+							if (d[0].data.eng_name === undefined || d[0].data.eng_name === "") {
+								info = d[0].data.title
+							} else {
+								info = d[0].data.eng_name
 							}
-						});
-						lastMessage = []
-					};
-				});
-			}
+
+							if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === "") {
+								pic = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+							} else {
+								pic = d[0].header.thumbnail
+							}
+
+							if (d[0].data.creator === undefined || d[0].data.creator === "") {
+								author = "Unknown"
+							} else {
+								author = d[0].data.creator[0]
+							}
+
+							bot.sendMessage({
+								to: channelID,
+								message: '-',
+								embed: {
+									color: 6826080,
+									thumbnail: {
+										url: pic,
+										width: 200
+									},
+									title: info,
+									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMessage + ')'
+								}
+							});
+							lastMessage = []
+						};
+					});
+				}
 				break;
 		}
 	}
