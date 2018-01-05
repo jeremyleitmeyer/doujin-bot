@@ -85,6 +85,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					client.get(api + lastMessage[0], function (data, response) {
 						var d = data.results
 						var d, info, author, pic
+						console.log(d[0].data)
 						// in case !sauce is called without a link
 						if (d === undefined) {
 							bot.sendMessage({
@@ -108,7 +109,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							if (d[0].data.creator === undefined || d[0].data.creator === "") {
 								author = "Unknown"
 							} else {
-								author = d[0].data.creator[0]
+								author = d[0].data.creator
 							}
 							// sends the embed message with the info
 							bot.sendMessage({
