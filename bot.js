@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 const Client = require('node-rest-client').Client;
 const client = new Client();
 
+// variables for eventual api call
 var lastMessage = []
 var api = "http://saucenao.com/search.php?db=999&output_type=2&url="
 var resultApi = "http://saucenao.com/search.php?db=999&url="
 var msg;
 
+// I did not create this. I found it from http://forums.devshed.com/javascript-development-115/regexp-match-url-pattern-493764.html
 function isURL(msg) {
 	var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
 		'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
@@ -21,6 +23,7 @@ function isURL(msg) {
 		return false
 	} else {
 		lastMessage = []
+		// clear and push single URL into lastMessage
 		lastMessage.push(msg)
 		return true
 	}
@@ -52,10 +55,13 @@ bot.on('ready', function (evt) {
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
+	// decides whether the data is an upload or a URL message
 	if (message === "") {
+		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
 		isURL(msg)
 	} else {
+		// if not we take the message as normal
 		msg = message
 		isURL(msg)
 	}
@@ -68,24 +74,25 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		switch (cmd) {
 			//commands
 			case 'sauce':
+				// check for anything in the array
 				if (lastMessage[0] === undefined) {
 					bot.sendMessage({
 						to: channelID,
 						message: 'Error, please send a link before calling !sauce or if you uploaded the photo, please copy the URL and try again.',
 					});
 				} else {
+					// calls API 
 					client.get(api + lastMessage[0], function (data, response) {
-						// console.log(data.results)
 						var d = data.results
 						var d, info, author, pic
-
+						// in case !sauce is called without a link
 						if (d === undefined) {
 							bot.sendMessage({
 								to: channelID,
 								message: 'Error, message was not a URL.',
 							});
 						} else {
-
+							// all the api calls return different keys, this is how I decided to handle them
 							if (d[0].data.eng_name === undefined || d[0].data.eng_name === "") {
 								info = d[0].data.title
 							} else {
@@ -103,7 +110,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							} else {
 								author = d[0].data.creator[0]
 							}
-
+							// sends the embed message with the info
 							bot.sendMessage({
 								to: channelID,
 								message: '-',
