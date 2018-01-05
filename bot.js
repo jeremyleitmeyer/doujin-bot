@@ -100,7 +100,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							}
 
 							if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === "") {
-								pic = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+								pic = "https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png"
 							} else {
 								pic = d[0].header.thumbnail
 							}
