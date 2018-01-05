@@ -85,7 +85,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					client.get(api + lastMessage[0], function (data, response) {
 						var d = data.results
 						var d, info, author, pic
-						console.log(d[0].data)
 						// in case !sauce is called without a link
 						if (d === undefined) {
 							bot.sendMessage({
