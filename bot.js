@@ -122,7 +122,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							// sends the embed message with the info
 							bot.sendMessage({
 								to: channelID,
-								message: '-',
+								message: '',
 								embed: {
 									color: 6826080,
 									thumbnail: {
