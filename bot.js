@@ -3,23 +3,17 @@ const logger = require('winston');
 const bodyParser = require('body-parser');
 const Client = require('node-rest-client').Client;
 const client = new Client();
-
+const reg = require('./regex-weburl.js');
 // variables for eventual api call
 var lastMsg = "";
 var objData = {};
 var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
 var resultApi = "http://saucenao.com/search.php?db=999&url=";
-var msg;
+var msg, re_weburl;
 
 // I did not create this. I found it from http://forums.devshed.com/javascript-development-115/regexp-match-url-pattern-493764.html
 function isURL(msg) {
-	var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-		'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
-		'((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-		'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-		'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-		'(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-	if (pattern.test(msg) === false) {
+	if (reg.re_weburl.test(msg) === false) {
 		return false
 	} else {
 		// clear and push single URL into lastMessage
@@ -122,7 +116,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							// sends the embed message with the info
 							bot.sendMessage({
 								to: channelID,
-								message: 'THIS IS BECAUSE I GOT YELLED AT',
+								message: '-',
 								embed: {
 									color: 6826080,
 									thumbnail: {
