@@ -5,7 +5,7 @@ const Client = require('node-rest-client').Client;
 const client = new Client();
 
 // variables for eventual api call
-var lastMessage = [];
+var lastMsg = [];
 var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
 var resultApi = "http://saucenao.com/search.php?db=999&url=";
 var msg;
@@ -21,9 +21,9 @@ function isURL(msg) {
 	if (pattern.test(msg) === false) {
 		return false
 	} else {
-		lastMessage = []
+		lastMsg = []
 		// clear and push single URL into lastMessage
-		lastMessage.push(msg)
+		lastMsg.push(msg)
 		return true
 	};
 };
@@ -48,7 +48,7 @@ bot.on('ready', function (evt) {
 	logger.info(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
 		game: {
-			name: 'Saucelord'
+			name: 'saucelord'
 		}
 	});
 });
@@ -74,14 +74,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			//commands
 			case 'sauce':
 				// check for anything in the array
-				if (lastMessage[0] === undefined) {
+				if (lastMsg[0] === undefined) {
 					bot.sendMessage({
 						to: channelID,
 						message: 'Error, please send a link or upload an image before calling !sauce',
 					});
 				} else {
 					// calls API 
-					client.get(api + lastMessage[0], function (data, response) {
+					client.get(api + lastMsg[0], function (data, response) {
 						var d = data.results
 						var d, info, author, pic
 						// in case !sauce is called without a link
@@ -124,7 +124,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMessage + ')'
 								}
 							});
-							lastMessage = [];
+							lastMsg = [];
 						};
 					});
 				}
