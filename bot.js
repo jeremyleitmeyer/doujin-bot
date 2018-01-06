@@ -1,6 +1,5 @@
 const Discord = require('discord.io');
 const logger = require('winston');
-const auth = require('./auth.json')
 const bodyParser = require('body-parser');
 const Client = require('node-rest-client').Client;
 const client = new Client();
@@ -39,7 +38,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-	token: auth.token,
+	token: process.env.BOT_TOKEN,
 	autorun: true
 });
 
