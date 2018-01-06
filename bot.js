@@ -6,7 +6,7 @@ const client = new Client();
 
 // variables for eventual api call
 var lastMsg = "";
-var cID = "";
+var objData = {};
 var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
 var resultApi = "http://saucenao.com/search.php?db=999&url=";
 var msg;
@@ -22,17 +22,15 @@ function isURL(msg) {
 	if (pattern.test(msg) === false) {
 		return false
 	} else {
-		lastMsg = ""
 		// clear and push single URL into lastMessage
 		lastMsg = msg
 		return true
 	};
 };
 
-function id(channelID){
-	if(isURL(msg)){
-		cID = channelID
-		console.log(cID)
+function setID(channelID) {
+	if (isURL(msg)) {
+		objData[channelID] = lastMsg
 	}
 }
 
@@ -66,12 +64,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	if (message === "") {
 		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
-		id(channelID)
+		setID(channelID)
 		isURL(msg)
 	} else {
 		// if not we take the message as normal
 		msg = message
-		id(channelID)
+		setID(channelID)
 		isURL(msg)
 	};
 	// will listen for messages that will start with `!`
@@ -83,7 +81,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		switch (cmd) {
 			//commands
 			case 'sauce':
-			console.log(cID)
 				// check for anything in the array
 				if (lastMsg === undefined) {
 					bot.sendMessage({
@@ -92,7 +89,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					});
 				} else {
 					// calls API 
-					client.get(api + lastMsg, function (data, response) {
+					client.get(api + objData[channelID], function (data, response) {
 						var d = data.results
 						var d, info, author, pic
 						// in case !sauce is called without a link
@@ -123,7 +120,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
 							// sends the embed message with the info
 							bot.sendMessage({
-								to: cID,
+								to: channelID,
 								message: '-',
 								embed: {
 									color: 6826080,
@@ -135,8 +132,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMsg + ')'
 								}
 							});
-							lastMsg = "";
-							cID = "";
 						};
 					});
 				}
