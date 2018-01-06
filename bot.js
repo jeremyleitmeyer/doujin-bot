@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const Client = require('node-rest-client').Client;
 const client = new Client();
 const reg = require('./regex-weburl.js');
+
 // variables for eventual api call
 var lastMsg = "";
 var objData = {};
@@ -11,7 +12,6 @@ var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
 var resultApi = "http://saucenao.com/search.php?db=999&url=";
 var msg, re_weburl;
 
-// I did not create this. I found it from http://forums.devshed.com/javascript-development-115/regexp-match-url-pattern-493764.html
 function isURL(msg) {
 	if (reg.re_weburl.test(msg) === false) {
 		return false
@@ -38,7 +38,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-	token: process.env.BOT_TOKEN,
+	token: 'Mzk4ODcyNzIwNjY3OTY3NDk5.DTLx9A.-QD0QDLhj5Zv8URAL55bT0Xc9_U',
 	autorun: true
 });
 
@@ -54,8 +54,9 @@ bot.on('ready', function (evt) {
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
+	
 	// decides whether the data is an upload or a URL message
-	if (message === "" && userID != bot.id) {
+	if (message === "" && evt.d.author.bot != true) {
 		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
 		setID(channelID)
