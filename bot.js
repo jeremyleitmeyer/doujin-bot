@@ -5,9 +5,9 @@ const Client = require('node-rest-client').Client;
 const client = new Client();
 
 // variables for eventual api call
-var lastMessage = []
-var api = "http://saucenao.com/search.php?db=999&output_type=2&url="
-var resultApi = "http://saucenao.com/search.php?db=999&url="
+var lastMessage = [];
+var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
+var resultApi = "http://saucenao.com/search.php?db=999&url=";
 var msg;
 
 // I did not create this. I found it from http://forums.devshed.com/javascript-development-115/regexp-match-url-pattern-493764.html
@@ -25,8 +25,8 @@ function isURL(msg) {
 		// clear and push single URL into lastMessage
 		lastMessage.push(msg)
 		return true
-	}
-}
+	};
+};
 
 //logger settings
 logger.remove(logger.transports.Console);
@@ -63,7 +63,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		// if not we take the message as normal
 		msg = message
 		isURL(msg)
-	}
+	};
 	// will listen for messages that will start with `!`
 	if (message.substring(0, 1) == '!') {
 		var args = message.substring(1).split(' ');
@@ -96,19 +96,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								info = d[0].data.title
 							} else {
 								info = d[0].data.eng_name
-							}
+							};
 
 							if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === "") {
 								pic = "https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png"
 							} else {
 								pic = d[0].header.thumbnail
-							}
+							};
 
 							if (d[0].data.creator === undefined || d[0].data.creator === "") {
 								author = "Unknown"
 							} else {
 								author = d[0].data.creator
-							}
+							};
+
 							// sends the embed message with the info
 							bot.sendMessage({
 								to: channelID,
@@ -123,7 +124,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMessage + ')'
 								}
 							});
-							lastMessage = []
+							lastMessage = [];
 						};
 					});
 				}
