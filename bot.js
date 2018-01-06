@@ -5,7 +5,7 @@ const Client = require('node-rest-client').Client;
 const client = new Client();
 
 // variables for eventual api call
-var lastMsg = [];
+var lastMsg = "";
 var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
 var resultApi = "http://saucenao.com/search.php?db=999&url=";
 var msg;
@@ -21,9 +21,9 @@ function isURL(msg) {
 	if (pattern.test(msg) === false) {
 		return false
 	} else {
-		lastMsg = []
+		lastMsg = ""
 		// clear and push single URL into lastMessage
-		lastMsg.push(msg)
+		lastMsg = msg
 		return true
 	};
 };
@@ -74,14 +74,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			//commands
 			case 'sauce':
 				// check for anything in the array
-				if (lastMsg[0] === undefined) {
+				if (lastMsg === undefined) {
 					bot.sendMessage({
 						to: channelID,
 						message: 'Error, please send a link or upload an image before calling !sauce',
 					});
 				} else {
 					// calls API 
-					client.get(api + lastMsg[0], function (data, response) {
+					client.get(api + lastMsg, function (data, response) {
 						var d = data.results
 						var d, info, author, pic
 						// in case !sauce is called without a link
@@ -124,7 +124,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMsg + ')'
 								}
 							});
-							lastMsg = [];
+							lastMsg = "";
 						};
 					});
 				}
