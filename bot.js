@@ -38,7 +38,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug';
 
 var bot = new Discord.Client({
-	token: 'Mzk4ODcyNzIwNjY3OTY3NDk5.DTLx9A.-QD0QDLhj5Zv8URAL55bT0Xc9_U',
+	token: process.env.BOT_TOKEN,
 	autorun: true
 });
 
@@ -54,7 +54,7 @@ bot.on('ready', function (evt) {
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
-	
+
 	// decides whether the data is an upload or a URL message
 	if (message === "" && evt.d.author.bot != true) {
 		// if we get an upload, we look for the attachment URL
