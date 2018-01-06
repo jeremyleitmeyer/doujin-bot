@@ -48,7 +48,7 @@ bot.on('ready', function (evt) {
 	logger.info(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
 		game: {
-			name: 'saucelord'
+			name: 'with sauce'
 		}
 	});
 });
@@ -75,7 +75,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		switch (cmd) {
 			//commands
 			case 'sauce':
-			console.log(objData)
+				console.log(objData)
 				// check for anything in the array
 				if (lastMsg === undefined) {
 					bot.sendMessage({
