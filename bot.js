@@ -55,7 +55,7 @@ bot.on('ready', function (evt) {
 
 bot.on('message', function (user, userID, channelID, message, evt) {
 	// decides whether the data is an upload or a URL message
-	if (message === "") {
+	if (evt.d.attachments[0].url) {
 		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
 		setID(channelID)
