@@ -81,6 +81,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		switch (cmd) {
 			//commands
 			case 'sauce':
+			console.log(objData)
 				// check for anything in the array
 				if (lastMsg === undefined) {
 					bot.sendMessage({
