@@ -78,7 +78,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (lastMessage[0] === undefined) {
 					bot.sendMessage({
 						to: channelID,
-						message: 'Error, please send a link before calling !sauce or if you uploaded the photo, please copy the URL and try again.',
+						message: 'Error, please send a link or upload an image before calling !sauce',
 					});
 				} else {
 					// calls API 
