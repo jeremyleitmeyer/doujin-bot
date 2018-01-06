@@ -121,7 +121,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										width: 200
 									},
 									title: info,
-									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMessage + ')'
+									description: " \n" + "Author: " + author + '\n\n' + '[Search Results](' + resultApi + lastMsg + ')'
 								}
 							});
 							lastMsg = [];
