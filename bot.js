@@ -55,7 +55,7 @@ bot.on('ready', function (evt) {
 
 bot.on('message', function (user, userID, channelID, message, evt) {
 	// decides whether the data is an upload or a URL message
-	if (evt.d.attachments[0].url) {
+	if (message === "" && userID != bot.id) {
 		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
 		setID(channelID)
@@ -116,6 +116,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							// sends the embed message with the info
 							bot.sendMessage({
 								to: channelID,
+								message: '',
 								embed: {
 									color: 6826080,
 									thumbnail: {
