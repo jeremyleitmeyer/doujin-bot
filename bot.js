@@ -99,7 +99,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			case 'play':
 				activity = playText.join(' ')
-				command.play(bot, activity, user)
+				command.play(bot, activity, userID)
 				break;
 		}
 	};
