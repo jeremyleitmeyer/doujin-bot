@@ -1,21 +1,27 @@
 const Client = require('node-rest-client').Client;
 const client = new Client();
 
-exports.help = function(bot, channelID){
+exports.help = function (bot, channelID) {
   bot.sendMessage({
     to: channelID,
     message: '```!sauce - Use after an image has been posted for other sources of the image.\n !find <tag_name> - Gives you a random image with that tag name **NSFW**```',
   });
 }
 
-exports.play = function(bot, activity, userID) {
-  console.log(userID)
-  // temp fix
-  bot.setPresence({
-    game: {
-      name: activity
-    }
-  });
+exports.play = function (bot, activity, userID) {
+  if (userID === process.env.ADMIN) {
+    // temp fix
+    bot.setPresence({
+      game: {
+        name: activity
+      }
+    });
+  }else{
+    bot.sendMessage({
+      to: channelID,
+      message: '```You do not have that permission```',
+    });
+  }
 }
 
 //this is the command for tag searching 
