@@ -11,7 +11,6 @@ exports.help = function(bot, channelID){
 exports.play = function(bot, activity, userID) {
   console.log(userID)
   // temp fix
-  if(user.username === 'tux' && user.discriminator === '2297')
   bot.setPresence({
     game: {
       name: activity
