@@ -8,7 +8,7 @@ exports.help = function (bot, channelID) {
   });
 }
 
-exports.play = function (bot, activity, userID) {
+exports.play = function (bot, activity, userID, channelID) {
   if (userID === process.env.ADMIN) {
     // temp fix
     bot.setPresence({
