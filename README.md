@@ -8,7 +8,7 @@ To use this bot clone the repository and create your own discord app. Use the to
 
 ## Usage
 
-!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api. !find <tag_name> uses gelbooru to return an image related to the tag name. 
+!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api.  !find <tag_name> uses gelbooru to return an image related to the tag name. 
 
 ## Contributing
 
