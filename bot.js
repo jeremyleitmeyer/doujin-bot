@@ -62,7 +62,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
   if (message === 'this bot sucks') {
     bot.sendMessage({
       to: channelID,
-      message: 'I am sorry for my incompetence User-sama...   *bow*'
+      message: 'You suck. :kissing_heart:'
     })
   }
 
@@ -110,8 +110,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         break
       case 'kawaii':
         command.kawaii(bot, channelID)
-				break
-				// NSFW ******************************
+        break
+      // NSFW ******************************
       case 'lewd':
         command.lewd(bot, channelID)
         break
@@ -126,8 +126,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         break
       case 'pantsu':
         command.pantsu(bot, channelID)
-				break
-			// **************************************
+        break
+      // **************************************
       case 'th':
         bot.sendMessage({
           to: channelID,

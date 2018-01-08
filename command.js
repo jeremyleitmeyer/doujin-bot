@@ -7,7 +7,10 @@ var seconds = Math.round(d.getTime() / 1000)
 exports.help = function (bot, channelID) {
   bot.sendMessage({
     to: channelID,
-    message: '```!sauce - Use after an image has been posted for other sources of the image.\n !find <tag_name> - Gives you a random image with that tag name **NSFW**\n !play sets the Playing status(admin only)```'
+    message: '```!sauce - Use after an image has been posted for other sources of the image.'+
+    '\n!lewd, !kawaii, !feets, !legs, !pantsu, and !niisokkusu gives you a random image from a subreddit.'+
+    '\n !find <tag_name> - Gives you a random image with that tag name **NSFW**'+
+    '\n !play sets the Playing status(admin only)```'
   })
 }
 
@@ -118,6 +121,7 @@ exports.sauce = function (bot, channelID, objData, lastMsg) {
 }
 
 // redditbooru commands
+// besides kawaii, these are NSFW commands. 
 
 exports.lewd = function (bot, channelID) {
   var thing = seconds - (Math.random() * 1000000)
