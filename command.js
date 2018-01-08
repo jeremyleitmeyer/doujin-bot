@@ -8,7 +8,7 @@ exports.help = function(bot, channelID){
   });
 }
 
-exports.play = function(bot, activity) {
+exports.play = function(bot, activity, user) {
   // temp fix
   if(user.username === 'tux' && user.discriminator === '2297')
   bot.setPresence({
