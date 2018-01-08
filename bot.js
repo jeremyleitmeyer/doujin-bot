@@ -6,10 +6,10 @@ const client = new Client();
 const reg = require('./regex-weburl.js');
 
 // variables for eventual api call
-var lastMsg = "";
+var lastMsg = '';
 var objData = {};
-var api = "http://saucenao.com/search.php?db=999&output_type=2&url=";
-var resultApi = "http://saucenao.com/search.php?db=999&url=";
+var api = 'http://saucenao.com/search.php?db=999&output_type=2&url=';
+var resultApi = 'http://saucenao.com/search.php?db=999&url=';
 var msg, re_weburl;
 
 function isURL(msg) {
@@ -56,7 +56,7 @@ bot.on('ready', function (evt) {
 bot.on('message', function (user, userID, channelID, message, evt) {
 
 	// decides whether the data is an upload or a URL message
-	if (message === "" && evt.d.author.bot != true) {
+	if (message === '' && evt.d.author.bot != true) {
 		// if we get an upload, we look for the attachment URL
 		msg = evt.d.attachments[0].url
 		setID(channelID)
@@ -71,6 +71,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	if (message.substring(0, 1) == '!') {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
+		var tag = args[1]
+		var tag2 = args[2]
 
 		args = args.splice(1);
 		switch (cmd) {
@@ -96,20 +98,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							});
 						} else {
 							// all the api calls return different keys, this is how I decided to handle them
-							if (d[0].data.eng_name === undefined || d[0].data.eng_name === "") {
+							if (d[0].data.eng_name === undefined || d[0].data.eng_name === '') {
 								info = d[0].data.title
 							} else {
 								info = d[0].data.eng_name
 							};
 
-							if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === "") {
-								pic = "https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png"
+							if (d[0].header.thumbnail === undefined || d[0].header.thumbnail === '') {
+								pic = 'https://blog.stylingandroid.com/wp-content/themes/lontano-pro/images/no-image-slide.png'
 							} else {
 								pic = d[0].header.thumbnail
 							};
 
-							if (d[0].data.creator === undefined || d[0].data.creator === "") {
-								author = "Unknown"
+							if (d[0].data.creator === undefined || d[0].data.creator === '') {
+								author = 'Unknown'
 							} else {
 								author = d[0].data.creator
 							};
@@ -125,13 +127,30 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										width: 200
 									},
 									title: info,
-									description: " \n" + "Author: " + author + '\n\n' + '[Saucenao.com Results](' + resultApi + lastMsg + ')'
+									description: ' \n' + 'Author: ' + author + '\n\n' + '[Saucenao.com Results](' + resultApi + lastMsg + ')'
 								}
 							});
 						};
 					});
 				}
 				break;
+			// a small tag based image search
+			case 'find':
+				client.get('https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=50&tags=' + tag, function (data, response) {
+					console.log(data.posts)
+					var iRes = data.posts.post
+					var count = 0;
+					for (i = 0; i < iRes.length; i++) {
+						count = i
+						var random = Math.floor(Math.random() * count)
+					}
+					bot.sendMessage({
+						to: channelID,
+						message: data.posts.post[random].$.file_url,
+					});
+				})
+				tag = ""
+				break;
 		}
-	}
-});
+	};
+})
