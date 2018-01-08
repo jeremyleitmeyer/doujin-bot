@@ -4,11 +4,13 @@ This is a Discord bot that allows a user to reverse image search a posted image 
 
 ## Installation
 
-To use this bot clone the repository and create your own discord app. Use the token from you app where process.env.BOT_TOKEN is and then run it !
+To use this bot clone the repository and create your own discord app. Use the token from your app where process.env.BOT_TOKEN is and then run it !
+
+NOTE: I currently have the !play permissions set to an ENV variable. You can choose to do what you want with that. Its set to my userID. May add permissions/roles later.
 
 ## Usage
 
-!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api.  !find <tag_name> uses gelbooru to return an image related to the tag name. 
+!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api.  !find <tag_name> uses gelbooru to return an image related to the tag name.  !play sets the Playing: status !help returns basically this !
 
 ## Contributing
 
