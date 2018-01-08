@@ -8,6 +8,15 @@ exports.help = function(bot, channelID){
   });
 }
 
+exports.play = function(bot, activity) {
+  activity = tag
+  bot.setPresence({
+    game: {
+      name: activity
+    }
+  });
+}
+
 //this is the command for tag searching 
 
 exports.find = function (bot, channelID, tag) {

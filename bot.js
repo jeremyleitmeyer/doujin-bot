@@ -6,6 +6,8 @@ const reg = require('./regex-weburl.js');
 // global
 var msg, re_weburl;
 
+// default Playing text
+var activity = 'with sauce'
 
 // variables for eventual api call
 var lastMsg = '';
@@ -31,7 +33,7 @@ bot.on('ready', function (evt) {
 	logger.info(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
 		game: {
-			name: 'with sauce'
+			name: activity
 		}
 	});
 });
@@ -89,6 +91,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			case 'help':
 				command.help(bot, channelID)
+				break;
+			case 'play':
+				command.play(bot, activity)
 				break;
 		}
 	};
