@@ -3,9 +3,8 @@ const client = new Client();
 
 //this is the command for tag searching 
 
-exports.find = function (tag, bot, channelID) {
+exports.find = function (bot, channelID, tag) {
   client.get('https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=50&tags=' + tag, function (data, response) {
-    // set the highest random number to the amount of objs in the res
     var iRes = data.posts.post
     if (iRes === undefined) {
       bot.sendMessage({
@@ -13,6 +12,7 @@ exports.find = function (tag, bot, channelID) {
         message: 'No results found',
       });
     } else {
+      // set the highest random number to the amount of objs in the res
       var count = 0;
       for (i = 0; i < iRes.length; i++) {
         count = i
