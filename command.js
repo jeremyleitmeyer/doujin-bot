@@ -9,6 +9,7 @@ exports.help = function(bot, channelID){
 }
 
 exports.play = function(bot, activity) {
+  console.log(activity)
   bot.setPresence({
     game: {
       name: activity
