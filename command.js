@@ -8,7 +8,7 @@ exports.help = function (bot, channelID) {
   bot.sendMessage({
     to: channelID,
     message: '```!sauce - Use after an image has been posted for other sources of the image.'+
-    '\n\n!lewd, !kawaii, !feets, !legs, !pantsu, and !niisokkusu will give you a random image from a respective subreddit.' +
+    '\n\n!lewd, !kawaii, !feet, !legs, !pantsu, and !niisokkusu will give you a random image from a respective subreddit.' +
     '\n\n!find <tag_name> - Gives you a random image with that tag name **NSFW**'+
     '\n\n!play sets the Playing status(admin only)```'
   })
