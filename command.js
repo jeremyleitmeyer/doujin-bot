@@ -16,7 +16,7 @@ exports.find = function (bot, channelID, tag) {
     if (iRes === undefined) {
       bot.sendMessage({
         to: channelID,
-        message: 'No results found',
+        message: '```No results found```',
       });
     } else {
       // set the highest random number to the amount of objs in the res
@@ -45,7 +45,7 @@ exports.sauce = function (bot, channelID, objData, lastMsg) {
   if (lastMsg === undefined) {
     bot.sendMessage({
       to: channelID,
-      message: 'Error, please send a link or upload an image before calling !sauce',
+      message: '```Error, please send a link or upload an image before calling !sauce```',
     });
   } else {
     // calls API 
@@ -57,7 +57,7 @@ exports.sauce = function (bot, channelID, objData, lastMsg) {
       if (d === undefined) {
         bot.sendMessage({
           to: channelID,
-          message: 'Error, message was not a URL.',
+          message: '```Error, message was not a URL.```',
         });
       } else {
         // all the api calls return different keys, this is how I decided to handle them
