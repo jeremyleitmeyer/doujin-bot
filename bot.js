@@ -76,9 +76,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
 		var tag = args[1]
+		// for playing command, gets whole message after !play
 		var playText = []
 		for(i=1;i<args.length;i++){
-			console.log(args[i])
 			playText.push(args[i])
 		}
 
@@ -99,7 +99,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			case 'play':
 				activity = playText.join(' ')
-				console.log(activity)
 				command.play(bot, activity)
 				break;
 		}
