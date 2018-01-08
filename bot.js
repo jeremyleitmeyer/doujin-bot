@@ -3,6 +3,7 @@ const logger = require('winston');
 const bodyParser = require('body-parser');
 const reg = require('./regex-weburl.js');
 
+// global
 var msg, re_weburl;
 
 
@@ -35,6 +36,7 @@ bot.on('ready', function (evt) {
 	});
 });
 
+// import commands file
 const command = require('./command.js');
 
 function isURL(msg) {
