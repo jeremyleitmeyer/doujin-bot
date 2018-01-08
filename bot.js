@@ -76,6 +76,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		var args = message.substring(1).split(' ');
 		var cmd = args[0];
 		var tag = args[1]
+		var playText = []
+		for(i=1;i<args.length;i++){
+			playText.push(args[i])
+		}
 
 		args = args.splice(1);
 		switch (cmd) {
@@ -93,6 +97,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				command.help(bot, channelID)
 				break;
 			case 'play':
+				activity = playText.join(' ')
 				command.play(bot, activity)
 				break;
 		}
