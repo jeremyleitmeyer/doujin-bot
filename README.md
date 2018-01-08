@@ -24,7 +24,7 @@ v1(?)
 
 ## Credits
 
-Flo & Riker
+Flo, Riker, saucenao(image api), gelbooru(tag api), Diego Perini(URL regex)
 
 ## License
 
