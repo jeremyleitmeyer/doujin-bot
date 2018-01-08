@@ -4,7 +4,7 @@ const client = new Client();
 exports.help = function(bot, channelID){
   bot.sendMessage({
     to: channelID,
-    message: 'Use !sauce after an image has been posted for other sources of the image. !find <tag_name> will give you an image with that tag **NSFW**',
+    message: '```!sauce - Use after an image has been posted for other sources of the image.\n !find <tag_name> - gives you a random image with that tag name **NSFW**',
   });
 }
 
