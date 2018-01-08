@@ -10,7 +10,7 @@ NOTE: I currently have the !play permissions set to an ENV variable. You can cho
 
 ## Usage
 
-!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api.  !find <tag_name> uses gelbooru to return an image related to the tag name.  !lewd, !kawaii, !feets, !legs, !pantsu, and !niisokkusu gives you a random image from a subreddit.  !play sets the Playing: status !help returns basically this !
+!sauce takes the last image url or attachment posted in that channel and searches it through saucenao.com's api.  !find <tag_name> uses gelbooru to return an image related to the tag name.  !lewd, !kawaii, !feets, !legs, !pantsu, and !niisokkusu will give you a random image from a respective subreddit.  !play sets the Playing: status !help returns basically this !
 
 ## Contributing
 
