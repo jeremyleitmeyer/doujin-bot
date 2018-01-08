@@ -1,6 +1,13 @@
 const Client = require('node-rest-client').Client;
 const client = new Client();
 
+exports.help = function(bot, channelID){
+  bot.sendMessage({
+    to: channelID,
+    message: 'Use !sauce after an image has been posted for other sources of the image. !find <tag_name> will give you an image with that tag **NSFW**',
+  });
+}
+
 //this is the command for tag searching 
 
 exports.find = function (bot, channelID, tag) {

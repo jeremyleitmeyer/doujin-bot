@@ -85,6 +85,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'find':
 				command.find(bot, channelID, tag)
 				break;
+			case 'help':
+				command.help(bot, channelID)
+				break;
 		}
 	};
 })
