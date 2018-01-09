@@ -92,6 +92,6 @@ exports.addSome = function (userID, some) {
       points: some
     }
   }, function (err, doc) {
-    console.log(err)
+    console.log(err + 'someErr')
   })
 }

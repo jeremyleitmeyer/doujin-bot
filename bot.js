@@ -66,7 +66,11 @@ function setID (channelID) {
 }
 
 bot.on('message', function (user, userID, channelID, message, evt) {
-
+  // point per word
+  if (message.substring(0, 1) != '!') {
+    var some = args.length
+    points.addSome(userID, some)
+  }
   // fun :P
   if (message === 'this bot sucks') {
     bot.sendMessage({
@@ -94,13 +98,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     var tag = args[1]
     // for playing command, gets whole message after !play
     var playText = []
+
     for (i = 1; i < args.length; i++) {
       playText.push(args[i])
-    }
-
-    for (i = 0; i < args.length; i++) {
-      var some = i
-      points.addSome(userID, some)
     }
 
     args = args.splice(1)
