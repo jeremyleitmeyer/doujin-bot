@@ -99,7 +99,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     }
 
     for (i = 0; i < args.length; i++) {
-      points.addSome(userID, i)
+      var some = i
+      points.addSome(userID, some)
     }
 
     args = args.splice(1)

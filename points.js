@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Player = require('./models/Player')
 const self = require('./points.js')
-var points, i;
+var points, some;
 
 exports.new = function (bot, evt, channelID, userID) {
 
@@ -83,7 +83,7 @@ exports.addThree = function (userID) {
   })
 }
 
-exports.addSome = function (userID, i) {
+exports.addSome = function (userID, some) {
   var currentPlayer = Player.findOne({
     playerId: userID
   }).update({
