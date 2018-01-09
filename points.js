@@ -22,7 +22,7 @@ exports.new = function (bot, evt, channelID, userID) {
         console.log(player)
         bot.sendMessage({
           to: channelID,
-          message: '```You have been added !```'
+          message: '```You have been added !\nTry !points again !```'
         })
       })
     }
@@ -36,7 +36,6 @@ exports.points = function (bot, evt, channelID, userID) {
     console.log(player)
     if (player === null) {
       self.new(bot, evt, channelID, userID)
-      // self.points(bot, evt, channelID, userID)
     } else {
       if (player.playerId === userID) {
         bot.sendMessage({

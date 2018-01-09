@@ -66,7 +66,7 @@ function setID (channelID) {
 }
 
 bot.on('message', function (user, userID, channelID, message, evt) {
-  points.addOne(userID)
+
   // fun :P
   if (message === 'this bot sucks') {
     bot.sendMessage({
@@ -96,6 +96,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     var playText = []
     for (i = 1; i < args.length; i++) {
       playText.push(args[i])
+      points.addOne(userID)
     }
 
     args = args.splice(1)
