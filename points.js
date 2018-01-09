@@ -16,6 +16,7 @@ exports.new = function (bot, evt, channelID, userID) {
         playerId: userID,
         points: 10
       }).save()
+
       currentPlayer = Player.find({
         playerId: userID
       }, function (err, player) {
@@ -88,7 +89,7 @@ exports.addSome = function (userID, some) {
     playerId: userID
   }).update({
     $inc: {
-      points: i
+      points: some
     }
   }, function (err, doc) {
     console.log(err)
