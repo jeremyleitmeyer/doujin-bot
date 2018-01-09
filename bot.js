@@ -96,7 +96,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     var playText = []
     for (i = 1; i < args.length; i++) {
       playText.push(args[i])
-      points.addOne(userID)
+    }
+
+    for (i = 0; i < args.length; i++) {
+      points.addSome(userID, i)
     }
 
     args = args.splice(1)

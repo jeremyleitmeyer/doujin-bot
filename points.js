@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 const Player = require('./models/Player')
 const self = require('./points.js')
-var points, currentUser
+var points, i;
 
 exports.new = function (bot, evt, channelID, userID) {
-  console.log(userID)
+
   var currentPlayer = Player.findOne({
     playerId: userID
   }, function (err, player) {
-    console.log(player)
+
     if (player === null) {
-      console.log(player)
+
       var newPlayer = new Player({
         name: evt.d.author.username,
         playerId: userID,
@@ -19,7 +19,7 @@ exports.new = function (bot, evt, channelID, userID) {
       currentPlayer = Player.find({
         playerId: userID
       }, function (err, player) {
-        console.log(player)
+ 
         bot.sendMessage({
           to: channelID,
           message: '```You have been added !\nTry !points again !```'
@@ -33,7 +33,7 @@ exports.points = function (bot, evt, channelID, userID) {
   var currentPlayer = Player.findOne({
     playerId: userID
   }, function (err, player) {
-    console.log(player)
+
     if (player === null) {
       self.new(bot, evt, channelID, userID)
     } else {
@@ -48,7 +48,6 @@ exports.points = function (bot, evt, channelID, userID) {
 }
 
 exports.addOne = function (userID) {
-  console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
   }).update({
@@ -61,7 +60,6 @@ exports.addOne = function (userID) {
 }
 
 exports.addTwo = function (userID) {
-  console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
   }).update({
@@ -74,12 +72,23 @@ exports.addTwo = function (userID) {
 }
 
 exports.addThree = function (userID) {
-  console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
   }).update({
     $inc: {
       points: 3
+    }
+  }, function (err, doc) {
+    console.log(err)
+  })
+}
+
+exports.addSome = function (userID, i) {
+  var currentPlayer = Player.findOne({
+    playerId: userID
+  }).update({
+    $inc: {
+      points: i
     }
   }, function (err, doc) {
     console.log(err)
