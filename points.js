@@ -36,7 +36,7 @@ exports.points = function (bot, evt, channelID, userID) {
     console.log(player)
     if (player === null) {
       self.new(bot, evt, channelID, userID)
-      self.points(bot, evt, channelID, userID)
+      // self.points(bot, evt, channelID, userID)
     } else {
       if (player.playerId === userID) {
         bot.sendMessage({
