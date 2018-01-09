@@ -68,7 +68,7 @@ function setID (channelID) {
 bot.on('message', function (user, userID, channelID, message, evt) {
   // point per word
   if (message.substring(0, 1) != '!') {
-    var some = args.length
+    var some = message.substring(1).split(' ').length
     points.addSome(userID, some)
   }
   // fun :P
