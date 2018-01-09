@@ -2,6 +2,13 @@ const Discord = require('discord.io')
 const logger = require('winston')
 const bodyParser = require('body-parser')
 const reg = require('./regex-weburl.js')
+const mongoose = require('mongoose')
+
+require('./models/Player')
+
+mongoose.connect(DB_TOKEN, {
+  useMongoClient: true
+})
 
 // global
 var msg, re_weburl
@@ -38,8 +45,9 @@ bot.on('ready', function (evt) {
   })
 })
 
-// import commands file
+// import command files
 const command = require('./command.js')
+const points = require('./points.js')
 
 function isURL (msg) {
   if (reg.re_weburl.test(msg) === false) {
@@ -93,6 +101,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     switch (cmd) {
       // commands
       case 'sauce':
+        points.addOne(userID)
         console.log(objData)
         setID(channelID)
         command.sauce(bot, channelID, objData, lastMsg)
@@ -102,6 +111,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         command.find(bot, channelID, tag)
         break
       case 'help':
+        points.addOne(userID)
         command.help(bot, channelID)
         break
       case 'play':
@@ -109,25 +119,37 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         command.play(bot, activity, userID, channelID)
         break
       case 'kawaii':
+        points.addOne(userID)
         command.kawaii(bot, channelID)
         break
       // NSFW ******************************
       case 'lewd':
+        points.addTwo(userID)
         command.lewd(bot, channelID)
         break
       case 'feet':
+        points.addThree(userID)
         command.feet(bot, channelID)
         break
       case 'legs':
+        points.addTwo(userID)
         command.legs(bot, channelID)
         break
       case 'niisokkusu':
+        points.addThree(userID)
         command.niisokkusu(bot, channelID)
         break
       case 'pantsu':
+        points.addTwo(userID)
         command.pantsu(bot, channelID)
         break
       // **************************************
+      case 'new':
+        points.new(bot, evt, channelID, userID)
+        break
+      case 'points':
+        points.points(bot, evt, channelID, userID)
+        break
       case 'th':
         bot.sendMessage({
           to: channelID,
