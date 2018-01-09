@@ -36,7 +36,7 @@ exports.points = function (bot, evt, channelID, userID) {
     if (player.playerId === userID) {
       bot.sendMessage({
         to: channelID,
-        message: player.name + ' has ' + player.points + ' points!'
+        message: '```' + player.name + ' has ' + player.points + ' points!' + '```'
       })
     }
   })

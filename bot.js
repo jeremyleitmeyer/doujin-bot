@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 require('./models/Player')
 
-mongoose.connect(DB_TOKEN, {
+mongoose.connect(process.env.DB_TOKEN, {
   useMongoClient: true
 })
 
