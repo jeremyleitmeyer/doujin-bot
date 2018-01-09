@@ -144,9 +144,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         command.pantsu(bot, channelID)
         break
       // **************************************
-      case 'new':
-        points.new(bot, evt, channelID, userID)
-        break
       case 'points':
         points.points(bot, evt, channelID, userID)
         break
