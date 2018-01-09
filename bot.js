@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 require('./models/Player')
 
-mongoose.connect('mongodb://tux:7A1s2d98@ds245287.mlab.com:45287/sauce-db', {
+mongoose.connect(DB_TOKEN, {
   useMongoClient: true
 })
 
@@ -30,7 +30,7 @@ logger.add(logger.transports.Console, {
 logger.level = 'debug'
 
 var bot = new Discord.Client({
-  token: 'Mzk4ODcyNzIwNjY3OTY3NDk5.DTV6KQ.bme4S53cIzBPNg8SjnzGUXlmyMs',
+  token: process.env.BOT_TOKEN,
   autorun: true
 })
 
