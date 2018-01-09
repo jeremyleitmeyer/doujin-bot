@@ -37,12 +37,13 @@ exports.points = function (bot, evt, channelID, userID) {
     if (player === null) {
       self.new(bot, evt, channelID, userID)
       self.points(bot, evt, channelID, userID)
-    }
-    if (player.playerId === userID) {
-      bot.sendMessage({
-        to: channelID,
-        message: '```' + player.name + ' has ' + player.points + ' points!' + '```'
-      })
+    } else {
+      if (player.playerId === userID) {
+        bot.sendMessage({
+          to: channelID,
+          message: '```' + player.name + ' has ' + player.points + ' points!' + '```'
+        })
+      }
     }
   })
 }
@@ -51,7 +52,11 @@ exports.addOne = function (userID) {
   console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
-  }).update({$inc: {points: 1} }, function (err, doc) {
+  }).update({
+    $inc: {
+      points: 1
+    }
+  }, function (err, doc) {
     console.log(err)
   })
 }
@@ -60,7 +65,11 @@ exports.addTwo = function (userID) {
   console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
-  }).update({$inc: {points: 2} }, function (err, doc) {
+  }).update({
+    $inc: {
+      points: 2
+    }
+  }, function (err, doc) {
     console.log(err)
   })
 }
@@ -69,7 +78,11 @@ exports.addThree = function (userID) {
   console.log('add one')
   var currentPlayer = Player.findOne({
     playerId: userID
-  }).update({$inc: {points: 3} }, function (err, doc) {
+  }).update({
+    $inc: {
+      points: 3
+    }
+  }, function (err, doc) {
     console.log(err)
   })
 }
