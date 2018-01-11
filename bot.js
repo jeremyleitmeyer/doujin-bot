@@ -41,7 +41,7 @@ bot.on('ready', function (evt) {
 // import command files
 const command = require('./command.js')
 
-function isURL (msg) {
+function isURL(msg) {
   if (reg.re_weburl.test(msg) === false) {
     return false
   } else {
@@ -51,7 +51,7 @@ function isURL (msg) {
   }
 }
 
-function setID (channelID) {
+function setID(channelID) {
   if (isURL(msg)) {
     objData[channelID] = lastMsg
   }
@@ -98,7 +98,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         setID(channelID)
         command.sauce(bot, channelID, objData, lastMsg)
         break
-      // a small tag based image search
+        // a small tag based image search
       case 'find':
         command.find(bot, channelID, tag)
         break
@@ -112,7 +112,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
       case 'kawaii':
         command.kawaii(bot, channelID)
         break
-      // NSFW ******************************
+        // NSFW ******************************
       case 'lewd':
         command.lewd(bot, channelID)
         break
@@ -128,7 +128,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
       case 'pantsu':
         command.pantsu(bot, channelID)
         break
-      // **************************************
+        // **************************************
       case 'th':
         bot.sendMessage({
           to: channelID,
@@ -139,6 +139,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         bot.sendMessage({
           to: channelID,
           message: '¯' + '\\' + '_(ツ)_/¯'
+        })
+        break
+      case 'sh':
+        bot.sendMessage({
+          to: channelID,
+          message: '¯' + '\\'+ ':moyai' + '_/¯'
         })
         break
     }
