@@ -141,7 +141,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           message: '¯' + '\\' + '_(ツ)_/¯'
         })
         break
-      case 'shm':
+      case 's':
         bot.sendMessage({
           to: channelID,
           message: '```The last message was sarcasm human. Ha ha.```'
