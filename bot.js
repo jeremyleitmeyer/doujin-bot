@@ -144,7 +144,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
       case 'shm':
         bot.sendMessage({
           to: channelID,
-          message: '¯' + '\\'+ ':moyai' + '_/¯'
+          message: '¯' + '\\' + ':moyai:' + '_/¯'
         })
         break
     }
