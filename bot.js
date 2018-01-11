@@ -144,7 +144,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
       case 's':
         bot.sendMessage({
           to: channelID,
-          message: '```By my calculations, it seems the last message was sarcasm human. Ha ha ha.```'
+          message: '```By my calculations, it seems the last message was sarcasm human. Ha ha ha ha.```'
         })
         break
       case 'shm':
