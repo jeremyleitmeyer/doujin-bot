@@ -35,7 +35,7 @@ exports.play = function (bot, activity, userID, channelID) {
 exports.find = function (bot, channelID, tag) {
   client.get('https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=50&tags=' + tag, function (data, response) {
     var iRes = data.posts.post
-    if (iRes === undefined) {
+    if (iRes === undefined || data.post === undefined || data === undefined) {
       bot.sendMessage({
         to: channelID,
         message: '```No results found```'
