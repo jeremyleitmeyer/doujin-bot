@@ -34,8 +34,7 @@ exports.play = function (bot, activity, userID, channelID) {
 
 exports.find = function (bot, channelID, tag) {
   client.get('https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=50&tags=' + tag, function (data, response) {
-    var iRes = data.posts.post
-    if (iRes === undefined || data.post === undefined || data === undefined) {
+    if (data.posts.post === undefined || data.post === undefined || data === undefined) {
       bot.sendMessage({
         to: channelID,
         message: '```No results found```'
@@ -43,7 +42,7 @@ exports.find = function (bot, channelID, tag) {
     } else {
       // set the highest random number to the amount of objs in the res
       var count = 0
-      for (i = 0; i < iRes.length; i++) {
+      for (i = 0; i < data.posts.post.length; i++) {
         count = i
         var random = Math.floor(Math.random() * count)
       }
